@@ -9,6 +9,7 @@
     Width="1536"
     Height="864"
     ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
@@ -16,6 +17,7 @@
             <ColumnDefinition Width="400" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+
         <Grid Background="#F9F9F9">
             <Grid.RowDefinitions>
                 <RowDefinition Height="170" />
@@ -28,53 +30,42 @@
                 Stretch="Uniform" />
             <StackPanel
                 Grid.Row="1"
-                Margin="20,0"
+                Margin="50,0"
                 Orientation="Vertical">
                 <Label
-                    Margin="15"
+                    Margin="15,0,0,25"
                     HorizontalAlignment="Center"
-                    Content="DANG NHAP"
+                    Content="Sign in"
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="#0A0A0A" />
-                <customcontrol:WatermarkTextBox LabelMark="TEN DANG NHAP" />
-                <customcontrol:WatermarkTextBox LabelMark="MAT KHAU" />
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <Border
-                        Width="65"
-                        Height="35"
-                        Background="Blue"
-                        CornerRadius="5">
-                        <Image x:Name="fb" />
-                    </Border>
-                    <Border
-                        Width="65"
-                        Height="35"
-                        Margin="10,0,0,0"
-                        Background="Blue"
-                        CornerRadius="5">
-                        <Image x:Name="gg" />
-                    </Border>
-                    <Border
-                        Width="65"
-                        Height="35"
-                        Margin="10,0,0,0"
-                        Background="Blue"
-                        CornerRadius="5">
-                        <Image x:Name="ap" />
-                    </Border>
-                    <Border
-                        Width="65"
-                        Height="35"
-                        Margin="10,0,0,0"
-                        Background="Blue"
-                        CornerRadius="5">
-                        <Image x:Name="xb" />
-                    </Border>
+                <customcontrol:WatermarkTextBox x:Name="userNameTB" LabelMark="USERNAME" />
+                <customcontrol:WatermarkTextBox
+                    x:Name="passwordTB"
+                    Margin="0,5,0,0"
+                    IsPassword="True"
+                    LabelMark="PASSWORD" />
+                <StackPanel Margin="0,17,0,0" Orientation="Horizontal">
+                    <Button
+                        Margin="5,0,0,0"
+                        Style="{StaticResource ButtonLink}"
+                        Tag="IsFacebookButton" />
+                    <Button
+                        Margin="6,0,0,0"
+                        Style="{StaticResource ButtonLink}"
+                        Tag="IsGoogleButton" />
+                    <Button
+                        Margin="6,0,0,0"
+                        Style="{StaticResource ButtonLink}"
+                        Tag="IsAppleButton" />
+                    <Button
+                        Margin="6,0,0,0"
+                        Style="{StaticResource ButtonLink}"
+                        Tag="IsXBoxButton" />
                 </StackPanel>
                 <ToggleButton
                     Grid.Row="2"
-                    Height="26"
+                    Margin="5,12,0,0"
                     HorizontalAlignment="Left"
                     Background="Transparent"
                     BorderThickness="0"
@@ -88,8 +79,9 @@
                                 <StackPanel Name="container" Orientation="Horizontal">
                                     <Border
                                         x:Name="checkbox"
-                                        Width="15"
-                                        Height="15"
+                                        Width="18"
+                                        Height="18"
+                                        VerticalAlignment="Center"
                                         Background="LightGray"
                                         BorderThickness="1"
                                         CornerRadius="3">
@@ -113,38 +105,19 @@
                                             </Border.Background>
                                         </Border>
                                     </Border>
-                                    <TextBlock
-                                        Margin="5,0,0,0"
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="0,0,0,2"
                                         VerticalAlignment="Center"
-                                        Text="GHI NHO DANG NHAP" />
+                                        Content="Stay signed in"
+                                        FontSize="13"
+                                        FontWeight="Medium" />
                                 </StackPanel>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsChecked" Value="True">
                                     <Setter TargetName="checkbox" Property="Background" Value="#C9373A" />
                                     <Setter TargetName="checkV" Property="Visibility" Value="Visible" />
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard SpeedRatio="5">
-                                                <ColorAnimation
-                                                    Storyboard.TargetProperty="(ToggleButton.BorderBrush).Color"
-                                                    From="Gray"
-                                                    To="White" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard SpeedRatio="5">
-                                                <ColorAnimation
-                                                    Storyboard.TargetProperty="(ToggleButton.BorderBrush).Color"
-                                                    From="White"
-                                                    To="Gray" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -156,45 +129,119 @@
                     <RowDefinition />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Button
-                    Width="80"
-                    Height="80"
-                    Background="#F9F9F9"
-                    BorderBrush="#E8E8E8"
-                    BorderThickness="2"
-                    Content="Next">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border
-                                x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="23">
-                                <Path
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Data="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                                    Fill="{Binding ElementName=border, Path=BorderBrush}"
-                                    Stroke="{Binding ElementName=border, Path=BorderBrush}"
-                                    StrokeThickness="0" />
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
+                <Button>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="0,0,0,55" />
+                            <Setter Property="Width" Value="65" />
+                            <Setter Property="Height" Value="65" />
+                            <Setter Property="Background" Value="#D13639" />
+                            <Setter Property="BorderBrush" Value="#E8E8E8" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border
+                                            x:Name="border"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="20">
+                                            <Path
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Data="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+                                                Fill="{Binding ElementName=border, Path=BorderBrush}"
+                                                Stroke="{Binding ElementName=border, Path=BorderBrush}"
+                                                StrokeThickness="0" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding TextValue.Length, ElementName=passwordTB}" Value="0">
+                                                <Setter TargetName="border" Property="Background" Value="#F9F9F9" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#E8E8E8" />
+                                                <Setter Property="Cursor" Value="Arrow" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding TextValue.Length, ElementName=userNameTB}" Value="0">
+                                                <Setter TargetName="border" Property="Background" Value="#F9F9F9" />
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#E8E8E8" />
+                                                <Setter Property="Cursor" Value="Arrow" />
+                                            </DataTrigger>
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Background, RelativeSource={RelativeSource Self}}" Value="#D13639" />
+                                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter TargetName="border" Property="Background" Value="#BC252A" />
+                                            </MultiDataTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
                 <Grid Grid.Row="1" Margin="0,0,0,50">
-                    <TextBlock HorizontalAlignment="Center" Text="Khong dang nhap duoc?" />
-                    <TextBlock
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Foreground" Value="#AFB3B3" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="#AFB3B3" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <Label HorizontalAlignment="Center" Content="CAN'T SIGN IN?" />
+                    <Label
                         Margin="0,5,30,0"
                         HorizontalAlignment="Right"
-                        Text="V63.0.9" />
+                        Content="V63.0.9"
+                        FontSize="12" />
                 </Grid>
             </Grid>
         </Grid>
-        <Image
-            Grid.Column="1"
-            Source="/Resources/3501759.png"
-            Stretch="UniformToFill" />
+        <StackPanel Grid.Column="1">
+            <Image
+                Grid.Column="1"
+                Width="1500"
+                Height="960"
+                Margin="-110,0,0,0"
+                RenderOptions.BitmapScalingMode="HighQuality"
+                RenderOptions.EdgeMode="Aliased"
+                Source="/Resources/bg3.jpg"
+                Stretch="Fill">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-3" />
+                </Image.RenderTransform>
+            </Image>
+        </StackPanel>
+        <Border
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            MouseDown="MainBorder_MouseDown">
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                FlowDirection="RightToLeft"
+                Orientation="Horizontal">
+                <Button
+                    Click="Close_Click"
+                    Content="{StaticResource close_ico}"
+                    Style="{StaticResource WindowButtonStyle}" />
+                <Button
+                    Click="Minimize_Click"
+                    Content="{StaticResource minimize_ico}"
+                    Style="{StaticResource WindowButtonStyle}"
+                    Tag="IsMinimizeButton" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

@@ -7,24 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="UC"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <Style x:Key="CaretBrushStyle" TargetType="{x:Type Rectangle}">
-            <Setter Property="Width" Value="2" />
-            <Setter Property="Height" Value="5" />
-            <Setter Property="Fill" Value="Red" />
-        </Style>
-        <Style BasedOn="{StaticResource CaretBrushStyle}" TargetType="{x:Type Rectangle}" />
-    </UserControl.Resources>
-
     <Border
         x:Name="border"
         Height="50"
         Margin="5"
-        Background="#E8E8E8"
-        BorderBrush="Gray"
-        BorderThickness="0"
-        CornerRadius="2">
+        Background="#EDEDED"
+        BorderBrush="Transparent"
+        BorderThickness="2.5"
+        CornerRadius="5">
         <Grid Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <PasswordBox
+                x:Name="passwordBox"
+                Grid.Row="1"
+                Margin="5,10,0,0"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderThickness="0"
+                FontSize="15"
+                FontWeight="Bold"
+                Foreground="#616161"
+                GotFocus="Control_GotFocus"
+                LostFocus="Control_LostFocus"
+                PasswordChanged="passwordBox_PasswordChanged"
+                PasswordChar="●" />
             <TextBox
                 x:Name="textBox"
                 Grid.Row="1"
@@ -32,19 +41,87 @@
                 VerticalAlignment="Center"
                 Background="Transparent"
                 BorderThickness="0"
-                FontSize="20"
-                Foreground="#333333"
-                GotFocus="TextBox_GotFocus"
-                LostFocus="TextBox_LostFocus" />
-
+                FontSize="15"
+                FontWeight="Bold"
+                Foreground="#616161"
+                GotFocus="Control_GotFocus"
+                LostFocus="Control_LostFocus"
+                TextChanged="textBox_TextChanged" />
             <TextBlock
                 x:Name="watermarkTB"
                 Grid.Row="0"
                 Margin="15,0,0,0"
                 VerticalAlignment="Center"
+                FontWeight="Bold"
                 Foreground="#808080"
                 IsHitTestVisible="False"
                 Text="{Binding ElementName=UC, Path=LabelMark}" />
+
+            <ToggleButton
+                x:Name="togglePassword"
+                Grid.Column="1"
+                Checked="HidePassword_Checked"
+                GotFocus="Control_GotFocus"
+                LostFocus="Control_LostFocus"
+                Unchecked="ShowPassword_Checked">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Setter Property="Width" Value="40" />
+                        <Setter Property="Height" Value="45" />
+                        <Setter Property="Height" Value="45" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="IsChecked" Value="True" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Grid>
+                                        <Image
+                                            x:Name="show"
+                                            Height="35"
+                                            VerticalAlignment="Center"
+                                            RenderOptions.BitmapScalingMode="HighQuality"
+                                            RenderOptions.EdgeMode="Aliased"
+                                            Source="/Resources/eye.png"
+                                            Stretch="Uniform" />
+                                        <Grid x:Name="line" Visibility="Collapsed">
+                                            <Rectangle
+                                                Width="2"
+                                                Height="18"
+                                                Margin="12,0,0,0"
+                                                Fill="White">
+                                                <Rectangle.RenderTransform>
+                                                    <RotateTransform Angle="55" CenterX="-2" CenterY="-1" />
+                                                </Rectangle.RenderTransform>
+                                            </Rectangle>
+                                            <Rectangle
+                                                Width="2"
+                                                Height="18"
+                                                Margin="12,0,0,0"
+                                                Fill="Black">
+                                                <Rectangle.RenderTransform>
+                                                    <RotateTransform Angle="55" CenterX="-2" CenterY="1" />
+                                                </Rectangle.RenderTransform>
+                                            </Rectangle>
+                                        </Grid>
+                                    </Grid>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="line" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+
         </Grid>
     </Border>
 </UserControl>
