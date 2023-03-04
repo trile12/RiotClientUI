@@ -125,6 +125,109 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ShowPassworddToggle" TargetType="ToggleButton">
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="Height" Value="45" />
+        <Setter Property="Height" Value="45" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="IsChecked" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Image
+                            x:Name="show"
+                            Height="35"
+                            VerticalAlignment="Center"
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            RenderOptions.EdgeMode="Aliased"
+                            Source="/Resources/eye.png"
+                            Stretch="Uniform" />
+                        <Grid x:Name="line" Visibility="Collapsed">
+                            <Rectangle
+                                Width="2"
+                                Height="18"
+                                Margin="12,0,0,0"
+                                Fill="White">
+                                <Rectangle.RenderTransform>
+                                    <RotateTransform Angle="55" CenterX="-2" CenterY="-1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle
+                                Width="2"
+                                Height="18"
+                                Margin="12,0,0,0"
+                                Fill="Black">
+                                <Rectangle.RenderTransform>
+                                    <RotateTransform Angle="55" CenterX="-2" CenterY="1" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="line" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LoginButton" TargetType="Button">
+        <Setter Property="Background" Value="#D13639" />
+        <Setter Property="BorderBrush" Value="#E8E8E8" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="20">
+                        <Path
+                            Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+                            Fill="{Binding ElementName=border, Path=BorderBrush}"
+                            Stroke="{Binding ElementName=border, Path=BorderBrush}"
+                            StrokeThickness="0" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding TextValue.Length, ElementName=passwordTB}" Value="0">
+                            <Setter TargetName="border" Property="Background" Value="#F9F9F9" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#E8E8E8" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TextValue.Length, ElementName=userNameTB}" Value="0">
+                            <Setter TargetName="border" Property="Background" Value="#F9F9F9" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#E8E8E8" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </DataTrigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Background, RelativeSource={RelativeSource Self}}" Value="#D13639" />
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="border" Property="Background" Value="#BC252A" />
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <PathGeometry x:Key="close_ico" Figures="M15.125 12.28125L12.28125 15.125L22.21875 25L12.28125 34.875L15.125 37.71875L25.0625 27.84375L35 37.71875L37.8125 34.875L27.90625 25L37.8125 15.125L35 12.28125L25.0625 22.15625Z" />
     <PathGeometry x:Key="minimize_ico" Figures="M3 11L3 13L21 13L21 11L3 11 z" />
     <PathGeometry x:Key="fb_ico" Figures="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z" />

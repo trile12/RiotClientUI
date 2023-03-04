@@ -129,60 +129,11 @@
                     <RowDefinition />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Button>
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Margin" Value="0,0,0,55" />
-                            <Setter Property="Width" Value="65" />
-                            <Setter Property="Height" Value="65" />
-                            <Setter Property="Background" Value="#D13639" />
-                            <Setter Property="BorderBrush" Value="#E8E8E8" />
-                            <Setter Property="BorderThickness" Value="2" />
-                            <Setter Property="Cursor" Value="Hand" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border
-                                            x:Name="border"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="20">
-                                            <Path
-                                                Grid.Column="0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Data="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                                                Fill="{Binding ElementName=border, Path=BorderBrush}"
-                                                Stroke="{Binding ElementName=border, Path=BorderBrush}"
-                                                StrokeThickness="0" />
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding TextValue.Length, ElementName=passwordTB}" Value="0">
-                                                <Setter TargetName="border" Property="Background" Value="#F9F9F9" />
-                                                <Setter TargetName="border" Property="BorderBrush" Value="#E8E8E8" />
-                                                <Setter Property="Cursor" Value="Arrow" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding TextValue.Length, ElementName=userNameTB}" Value="0">
-                                                <Setter TargetName="border" Property="Background" Value="#F9F9F9" />
-                                                <Setter TargetName="border" Property="BorderBrush" Value="#E8E8E8" />
-                                                <Setter Property="Cursor" Value="Arrow" />
-                                            </DataTrigger>
-
-                                            <MultiDataTrigger>
-                                                <MultiDataTrigger.Conditions>
-                                                    <Condition Binding="{Binding Background, RelativeSource={RelativeSource Self}}" Value="#D13639" />
-                                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
-                                                </MultiDataTrigger.Conditions>
-                                                <Setter TargetName="border" Property="Background" Value="#BC252A" />
-                                            </MultiDataTrigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <Button
+                    Width="65"
+                    Height="65"
+                    Margin="0,0,0,55"
+                    Style="{StaticResource LoginButton}" />
                 <Grid Grid.Row="1" Margin="0,0,0,50">
                     <Grid.Resources>
                         <Style TargetType="Label">

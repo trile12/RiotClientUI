@@ -63,64 +63,8 @@
                 Checked="HidePassword_Checked"
                 GotFocus="Control_GotFocus"
                 LostFocus="Control_LostFocus"
-                Unchecked="ShowPassword_Checked">
-                <ToggleButton.Style>
-                    <Style TargetType="ToggleButton">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Setter Property="Width" Value="40" />
-                        <Setter Property="Height" Value="45" />
-                        <Setter Property="Height" Value="45" />
-                        <Setter Property="HorizontalAlignment" Value="Right" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Background" Value="White" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Cursor" Value="Hand" />
-                        <Setter Property="IsChecked" Value="True" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                    <Grid>
-                                        <Image
-                                            x:Name="show"
-                                            Height="35"
-                                            VerticalAlignment="Center"
-                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                            RenderOptions.EdgeMode="Aliased"
-                                            Source="/Resources/eye.png"
-                                            Stretch="Uniform" />
-                                        <Grid x:Name="line" Visibility="Collapsed">
-                                            <Rectangle
-                                                Width="2"
-                                                Height="18"
-                                                Margin="12,0,0,0"
-                                                Fill="White">
-                                                <Rectangle.RenderTransform>
-                                                    <RotateTransform Angle="55" CenterX="-2" CenterY="-1" />
-                                                </Rectangle.RenderTransform>
-                                            </Rectangle>
-                                            <Rectangle
-                                                Width="2"
-                                                Height="18"
-                                                Margin="12,0,0,0"
-                                                Fill="Black">
-                                                <Rectangle.RenderTransform>
-                                                    <RotateTransform Angle="55" CenterX="-2" CenterY="1" />
-                                                </Rectangle.RenderTransform>
-                                            </Rectangle>
-                                        </Grid>
-                                    </Grid>
-
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter TargetName="line" Property="Visibility" Value="Visible" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ToggleButton.Style>
-            </ToggleButton>
+                Style="{StaticResource ShowPassworddToggle}"
+                Unchecked="ShowPassword_Checked" />
 
         </Grid>
     </Border>
